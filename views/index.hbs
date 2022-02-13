@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Creating Navbar and Layouting</title>
+
+   
+
+    {{!-- link bootstrap css cdn --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+        <div class="container-lg">
+          <div>
+            <img src="/public/assets/logo.png" alt="">
+          </div>                    
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-5">
+                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link" href="/blog">Add Project</a>
+                    </li> 
+                </ul>
+            </div>
+            <div class="d-flex justity-content-end contact-me">
+              <a href="/contact-me">
+                <button class="btn btn-dark" type="button">contact Me</button>
+              </a>
+            </div>
+          </div>        
+      </nav>
+
+<!-- card -->      
+<nav class="navbar"  style="background-color: #DDE1E5;">
+    <div class="container bg-light mt-3 mb-5" style="box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);">
+      <div class="row justify-content-center mt-3">
+        <div class="col-8 p-3">
+          <h2>Hi, Welcome </h2>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex illo provident aliquid deleniti eaque similique consequuntur dolorem dolor, aperiam inventore odio ipsam architecto ipsa corporis laborum, vero obcaecati! Perspiciatis neque alias adipisci ducimus nisi illo voluptate doloremque unde tenetur, consequuntur accusantium saepe rerum fugit esse sed incidunt, error quos. Deserunt laborum magnam, dolorem odit similique fuga assumenda, esse quidem ullam eius quae consectetur quam quod voluptatum? Esse nulla dolor quod, necessitatibus odio vero quisquam qui, distinctio nam deserunt rem accusantium!</p>
+              <a href="/contact" class="btn btn-dark me-3">contact me</a>
+              Download Cv
+              <a href=""><img src="/public/assets/attach.png" alt="" style="width: 20px ;"></a><br>
+              <div class="media mt-3">
+                <a href="#"><img src="/public/assets/instagram.png" alt="" style="width: 40px ;"></a>
+                <a href="#"><img src="/public/assets/twitter.png" alt="" style="width: 40px ;"></a>
+                <a href="#"><img src="/public/assets/facebook.png" alt="" style="width: 40px ;"></a>
+              </div>
+          </p>
+        </div>
+        <div class="col-4 p-3">
+          <div class="card-sm" style="box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);">
+            <img src="/public/assets/image.jpeg" class="card-img-top" alt="">
+            <p class="text-center fw-bold p-3">
+              Sopian <br>
+              <small class="fw-normal">Fullstack Development</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+   <!-- List Project Card --> 
+
+  <div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+      {{#each blogs}}
+        <div class="col-4 flex-wrap mb-3">
+          <div class="card-sm p-2" style="box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);">
+            <a href="/blog-detail/{{@index}}"> <img src="/public/assets/reactjs.jpg" class="card-img-top" alt=""></a>
+            <p class="fw-bold">
+              {{this.title}}<br>
+              <small class="fw-normal">Durasi: 3 bulan</small>
+            </p>
+            <p class="text-small" style="font-size: 12px; text-align: justify;">{{this.content}}</p>
+            <div class="media mt-3">
+              <a href="#"><img src="/public/assets/instagram.png" alt="" style="width: 30px ;"></a>
+              <a href="#"><img src="/public/assets/twitter.png" alt="" style="width: 30px ;"></a>
+              <a href="#"><img src="/public/assets/facebook.png" alt="" style="width: 30px ;"></a>
+            </div>
+            <div class="button-group text-center mt-3">
+              <button type="button" class="col-5 btn btn-primary">edit</button>
+              <a href="/delete-project/{{@index}}"><button type="button" class="col-5 btn btn-primary">delete</button></a>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+                  
+</body>
+
+</html>
