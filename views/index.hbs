@@ -77,18 +77,19 @@
           <div class="card-sm p-2" style="box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);">
             <a href="/blog-detail/{{@index}}"> <img src="/public/assets/reactjs.jpg" class="card-img-top" alt=""></a>
             <p class="fw-bold">
-              {{this.title}}<br>
-              <small class="fw-normal">Durasi: 3 bulan</small>
+              {{this.inputProject}}<br>
+              <small class="fw-normal">Durasi: {{this.durasi}}</small>
             </p>
-            <p class="text-small" style="font-size: 12px; text-align: justify;">{{this.content}}</p>
+            <p class="text-small" style="font-size: 12px; text-align: justify;">{{this.inputDescription}}</p>
             <div class="media mt-3">
-              <a href="#"><img src="/public/assets/instagram.png" alt="" style="width: 30px ;"></a>
-              <a href="#"><img src="/public/assets/twitter.png" alt="" style="width: 30px ;"></a>
-              <a href="#"><img src="/public/assets/facebook.png" alt="" style="width: 30px ;"></a>
+              <img src="/public/assets/{{this.nodejs}}" alt="" style="width: 30px ;"></img>
+              <img src="/public/assets/{{this.reactjs}}" alt="" style="width: 30px ;"></img>
+              <img src="/public/assets/{{this.textscript}}" alt="" style="width: 30px ;"></img>
+              <img src="/public/assets/{{this.typescript}}" alt="" style="width: 30px ;"></img>
             </div>
             <div class="button-group text-center mt-3">
-              <button type="button" class="col-5 btn btn-primary">edit</button>
-              <a href="/delete-project/{{@index}}"><button type="button" class="col-5 btn btn-primary">delete</button></a>
+              <a href="/update-project/{{@index}}"><button type="button" class="col-5 btn btn-primary">Edit</button></a>
+              <a href="/delete-blog/{{@index}}"><button type="button" class="col-5 btn btn-primary">delete</button></a>
             </div>
           </div>
         </div>

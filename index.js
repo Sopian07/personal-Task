@@ -19,10 +19,12 @@ const isLogin = true
 
 const blogs = [
     {
-        title: "Pasar Coding di Indonesia Dinilai Masih Menjanjikan",
-        content: "Ketimpangan sumber daya manusia (SDM) di sektor digital masih menjadi isu yang belum terpecahkan. Berdasarkan penelitian ManpowerGroup, ketimpangan SDM global, termasuk Indonesia, meningkat dua kali lipat dalam satu dekade terakhir. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam, molestiae numquam! Deleniti maiores expedita eaque deserunt quaerat! Dicta, eligendi debitis?",
+        inputProject: "Pasar Coding di Indonesia Dinilai Masih Menjanjikan",
+        inputDescription: "Ketimpangan sumber daya manusia (SDM) di sektor digital masih menjadi isu yang belum terpecahkan. Berdasarkan penelitian ManpowerGroup, ketimpangan SDM global, termasuk Indonesia, meningkat dua kali lipat dalam satu dekade terakhir. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam, molestiae numquam! Deleniti maiores expedita eaque deserunt quaerat! Dicta, eligendi debitis?",
         author: "Ichsan Emrald Alamsyah",
-        posted_at: "12 Jul 2021 22:30 WIB"
+        posted_at: "12 Jul 2021 22:30 WIB",
+        durasi: "1 bulan",
+        reactjs: "reactjs.jpeg",
     }
 ]
 
@@ -48,7 +50,7 @@ app.get('/', function (req, res) {
 
 
 app.get('/home', function (req, res) {
-    console.log(blogs) // hanya ada 4 properti
+    // console.log(blogs) // hanya ada 4 properti
 
     let dataBlogs = blogs.map(function (data) {
         return {
@@ -77,45 +79,60 @@ app.get('/blog', function (req, res) {
 
 app.post('/blog', function (req, res) {
     let inputProject = req.body.inputProject ;
-    let inputStart = req.body.inputStart;
-    let inputEnd = req.body.inputEnd;
+    let inputStart = req.body.inputStartDate;
+    let inputEnd = req.body.inputEndDate;
     let inputDescription =req.body.inputDescription;
     let image = req.body.image;
+    let nodejs = req.body.nodejs;
+    let reactjs = req.body.reactjs;
+    let textscript = req.body.textscript;
+    let typescript = req.body.typescript;
     
     let date = new Date()
 
     let blog = {
         inputProject,
-        inputStart,
-        inputEnd,
+        durasi : durationTime(inputStart,inputEnd),
         inputDescription,
         image,
         author: "Ichsan Emrald Alamsyah",
-        posted_at: getFullTime(date)
-    }
+        posted_at: getFullTime(date),
+        nodejs,
+        reactjs,
+        textscript,
+        typescript,
 
+    }
+    console.log('ljbfuiodfbdskfjbsdkjf',inputStart)
     blogs.push(blog)
+    
 
     res.redirect('/home')
-    console.log(blogs);
+    // console.log(blogs);
 
 })
 
-// app.get('/blog/:id', function (req, res) {
-//     let id = req.params.id
-//     console.log(`Id dari client : ${id}`)
+app.get('/blog/:id', function (req, res) {
+    let id = req.params.id
 
-//     res.render('blog-detail', { id: id })
-// })
+    res.render('blog-detail', { id: id })
+})
 
 app.get('/delete-blog/:index', function (req, res) {
     let index = req.params.index
 
-    console.log(`Index data : ${index}`)
-
     blogs.splice(index, 1)
-    res.redirect('/blog')
+    res.redirect('/home')
 })
+
+app.get('/update-project/:index', function (req, res) {
+    let index = req.params.index
+    index = blogs [index] 
+    
+    res.render("update-project")
+})
+
+
 app.get('/contact-me', function (req, res) {
     res.render('contact')
 
@@ -146,5 +163,29 @@ function getFullTime(time) {
 // app.get('/form-blog', (req,res)=>{
 //     res.render('form-blog')
 //     })
+
+//function
+function durationTime(inputStart, inputEnd) {
+    // Convert Start - End Date to Days
+    let newStartDate = new Date(inputStart)
+    let newEndDate = new Date(inputEnd)
+    let duration = Math.abs(newStartDate - newEndDate)
+    // console.log(newStartDate)
+    let day = Math.floor(duration / (1000 * 60 * 60 * 24))
+    
+    if (day < 30) {
+        return day + ` days `
+    } else {
+        let diffMonths = Math.ceil(duration / (1000 * 60 * 60 * 24 * 30));
+        if (diffMonths >= 1) {
+            return diffMonths + ` month `
+        }
+
+    }
+};
+
+
+
+
 
 
